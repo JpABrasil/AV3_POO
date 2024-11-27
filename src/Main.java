@@ -92,7 +92,7 @@ public class Main {
         List<Caixa> caixas = resultadoLeitura.getCaixas();
 
         //Algoritimo agrupando as caixas que ocuparem maior área juntas
-        //Descobrir qual caixa ocupa maior Área dentro do Container
+        //Alocar bloco que ocupar maior área
         Caixa caixaMaiorBloco = container.caixaMaiorBloco(caixas);
         int xInicial = 0;
         int yInicial = 0;
@@ -105,6 +105,21 @@ public class Main {
             xInicial = 0;
             yInicial+= caixaMaiorBloco.altura;
         }
+        yInicial = 0;
+
+        //Verificar se ainda há espaço para outro bloco
+        //No eixo X
+        Caixa caixaMaisADireita = container.caixaQueCabeMaisADireita(caixas);
+        if(!(caixaMaisADireita == null)){
+            int xMaisADireita = container.xMaisADireita();
+            for(int i = 0; i < container.altura/caixaMaisADireita.altura; i++){
+                int[] posicao = {xMaisADireita, yInicial};
+                container.adicionarCaixa(caixaMaisADireita, posicao);
+                yInicial += caixaMaisADireita.altura;
+            }
+        }
+
+
 
 
 

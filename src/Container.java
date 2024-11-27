@@ -24,8 +24,31 @@ public class Container extends Objeto2D{
         return caixaMaiorBloco;
     }
 
-   public void adicionarCaixa(Caixa caixa,int[] posicao){
+    public void adicionarCaixa(Caixa caixa,int[] posicao){
         posicoes.add(posicao);
         caixas.add(caixa);
-   };
+    };
+
+    public int xMaisADireita(){
+       int maisADireita = posicoes.getFirst()[0];
+       int comprimentoCaixaADireita = caixas.getFirst().comprimento;
+       for(int i = 0; i < posicoes.size(); i++){
+           if(posicoes.get(i)[0] > maisADireita){
+               maisADireita = posicoes.get(i)[0];
+               comprimentoCaixaADireita = caixas.get(i).comprimento;
+           }
+       }
+       return maisADireita+comprimentoCaixaADireita;
+   }
+
+    public Caixa caixaQueCabeMaisADireita(List<Caixa> caixas){
+        int posicaoMaisADireita = this.xMaisADireita();
+        Caixa caixaMaisADireita = null;
+        for(Caixa caixa : caixas){
+            if(posicaoMaisADireita + caixa.comprimento <= this.comprimento){
+                caixaMaisADireita = caixa;
+            }
+        }
+        return caixaMaisADireita;
+    }
 }
