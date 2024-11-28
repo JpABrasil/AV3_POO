@@ -6,7 +6,6 @@ from matplotlib.patches import Rectangle
 def ler_entrada(nome_arquivo):
     caixas = {}
     with open(nome_arquivo, 'r') as arquivo:
-        linhas = []
         contador = 0
         for linha in arquivo:
             linha = linha.strip()
@@ -36,32 +35,52 @@ def main():
 
     #Ler Solução
     solucao = pd.read_csv(argumentos[2], sep=' ', header=None)
-    tipos = solucao[0].unique()
+    tipos = descricao_caixas.keys()
     cores = np.random.rand(len(tipos)+1, 3)
     
     #Gerar gráfico
     fig,ax = plt.subplots()
+    fig.subplots_adjust(left=0.3)
     ax.set_xlim(0, comprimento_container)
     ax.set_ylim(0, altura_container)
     
-    #ax.set_aspect('equal')
-    texto_aproveitamento = ax.annotate(f'%Aproveitamento: {area_ocupada/area_total:.2%} ', (comprimento_container/2,altura_container), color='black', fontsize=12, ha='center')
+    texto_aproveitamento = ax.annotate(f'%Aproveitamento: {area_ocupada/area_total:.2%} ', (comprimento_container/2,altura_container), color='black', fontsize=9, ha='center')
+    anotacoes_caixas = {}
+    y_pos = 0.6  # Posição Y para a anotação (ajuste conforme necessário)
+    for k,v in descricao_caixas.items():
+        valor = v[2]  # Aqui, v[2] é o valor desejado
+        # Criação da anotação para cada caixa, com o valor de v[2]
+        anotacoes_caixas[k] = fig.text(0.1, y_pos,f'Qtd.Caixa {k}: {valor}',  
+                                color='black', 
+                                fontsize=10, 
+                                ha='center')   
+        y_pos -= 0.1
+
     plt.gca().set_aspect('equal', adjustable='box')
     plt.ion()
     plt.show()
+
     for i in range(len(solucao)):
         caixa = descricao_caixas[solucao[0][i]]
+        
         comprimento_caixa = caixa[0]
         altura_caixa = caixa[1]
         area_caixa = comprimento_caixa*altura_caixa
         area_ocupada += area_caixa
         x = solucao[1][i]
         y = solucao[2][i]   
+
         quadrado = Rectangle((x, y),comprimento_caixa, altura_caixa, edgecolor='black', facecolor=cores[solucao[0][i]], linewidth=1)
         ax.add_patch(quadrado) 
         texto_aproveitamento.set_text(f'%Aproveitamento: {area_ocupada/area_total:.2%}')
+        anotacoes_caixas[solucao[0][i]].set_text(f'Qtd.Caixa {solucao[0][i]}: {descricao_caixas[solucao[0][i]][2]}')
+
+        descricao_caixas[solucao[0][i]][2] -=1
+
         plt.draw()
+    
         plt.pause(0.5)
+
     plt.ioff()
     plt.show()
 
