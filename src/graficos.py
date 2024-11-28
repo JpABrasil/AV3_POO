@@ -6,7 +6,6 @@ from matplotlib.patches import Rectangle
 def ler_entrada(nome_arquivo):
     caixas = {}
     with open(nome_arquivo, 'r') as arquivo:
-        linhas = []
         contador = 0
         for linha in arquivo:
             linha = linha.strip()
@@ -80,7 +79,7 @@ def main():
 
         plt.draw()
     
-        plt.pause(0.2)
+        plt.pause(0.5)
 
     plt.ioff()
     plt.show()
