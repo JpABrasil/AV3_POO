@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Greedy {
-    public static class v01 {
+    public static class v02 {
         //Classe e método para podermos ler o arquivo
         public static class ResultadoLeitura {
             private Container container;
@@ -55,7 +55,7 @@ public class Greedy {
 
         //Passando Container para script python gerar gráfico
         public static void iniciarGrafico(String caminhoInput, String caminhoOutput) throws IOException, InterruptedException {
-            String pythonScriptPath = "E:\\Faculdade\\2_Semestre\\Programação Orientada a Objetos\\AV3_FINAL\\src\\graficos.py"; // Substitua pelo caminho correto
+            String pythonScriptPath = "D:\\Faculdade\\2_Semestre\\Programação Orientada a Objetos\\AV3_FINAL\\src\\graficos.py"; // Substitua pelo caminho correto
             String pythonExe = "python"; // Ou "python3" dependendo da sua instalação
             String[] parametros = {pythonExe, pythonScriptPath,
                     caminhoInput,
