@@ -79,7 +79,7 @@ def main():
 
         plt.draw()
     
-        plt.pause(0.5)
+        plt.pause(0.25)
 
     plt.ioff()
     plt.show()
