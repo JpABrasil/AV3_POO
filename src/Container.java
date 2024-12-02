@@ -76,5 +76,14 @@ public class Container extends Objeto2D{
         // se chegou aqui cabe no container
         return true;
     }
+   public void removerCaixa(Caixa caixa, int[] posicao){
+       for(int i = 0; i < posicoes.size(); i++){
+           if(posicoes.get(i)[0] == posicao[0] && posicoes.get(i)[1] == posicao[1]){
+               posicoes.remove(i);
+               caixas.remove(i);
+               break;
+           }
+       }
+   }
 
 }
