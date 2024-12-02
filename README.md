@@ -5,3 +5,7 @@
 ### Objetivo:
   * Criar/Aplicar Algoritimo de otimização para alocar caixas dentro de um container de forma a maximizar a área ocupada (minimizar espaço vazio)
   * Considerando a disciplina utilizamos Java para criação do algoritmo e Python para gerar Gráficos
+### Algoritimos Implementados:
+ * Greedy
+ * Divide and Conquer
+ * Bakctracking
