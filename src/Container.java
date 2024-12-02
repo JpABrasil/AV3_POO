@@ -41,6 +41,7 @@ public class Container extends Objeto2D{
        return maisADireita+comprimentoCaixaADireita;
    }
 
+
     public Caixa caixaQueCabeMaisADireita(List<Caixa> caixas){
         int posicaoMaisADireita = this.xMaisADireita();
         Caixa caixaMaisADireita = null;
@@ -50,6 +51,30 @@ public class Container extends Objeto2D{
             }
         }
         return caixaMaisADireita;
+    }
+
+    public boolean cabeCaixa(Caixa caixa, int[] posicao) {
+        int x = posicao[0];
+        int y = posicao[1];
+
+        // verifica se a caixa cabe dentro do container
+        if (x + caixa.comprimento > this.comprimento || y + caixa.altura > this.altura) {
+            return false;
+        }
+        //se cabe continua
+
+        // checa se a caixa nao ta sobrepondo outra
+        for (int i = 0; i < posicoes.size(); i++) {
+            int[] posicaoExistente = posicoes.get(i);
+            Caixa caixaExistente = caixas.get(i);
+
+            if (x < posicaoExistente[0] + caixaExistente.comprimento && x + caixa.comprimento > posicaoExistente[0] && y < posicaoExistente[1] + caixaExistente.altura && y + caixa.altura > posicaoExistente[1]) {
+                return false;
+            }
+        }
+
+        // se chegou aqui cabe no container
+        return true;
     }
 
 }

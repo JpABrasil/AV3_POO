@@ -82,4 +82,13 @@ public class Algoritimo {
             }
         }
     }
+
+    public static void salvarTempoExecucao(long duration,String caminhoOutput){
+        try (PrintWriter escritor = new PrintWriter(new FileWriter(caminhoOutput))) {
+            String conteudo = String.valueOf(duration);
+            escritor.println(conteudo);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
