@@ -55,7 +55,7 @@ def main():
                                 fontsize=10, 
                                 ha='center')   
         y_pos -= 0.1
-
+    
     plt.gca().set_aspect('equal', adjustable='box')
     plt.ion()
     plt.show()

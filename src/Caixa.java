@@ -6,10 +6,5 @@ public class Caixa extends Objeto2D{
         this.tipo = tipo;
         this.quantidade = quantidade;
     }
-    public int AreaBlocoDeCaixas(Container c){
-        //Quantas Caixas desse tipo Cabem Dentro do Container
-        int qtdCaixasContainer = c.calcArea()/this.calcArea();
-        //Qual área ocuparia um bloco composto por essas caixas
-        return qtdCaixasContainer * this.calcArea();
-    }
+
 }
